@@ -942,13 +942,13 @@
     strip-ansi "6.0.1"
     ts-retry-promise "^0.7.0"
 
-"@salesforce/core@^4.0.1", "@salesforce/core@^4.1.0", "@salesforce/core@^4.1.2":
-  version "4.2.1"
-  resolved "https://registry.npmjs.org/@salesforce/core/-/core-4.2.1.tgz"
-  integrity sha512-1bi3era5/0lFqYNU786b1As+8JTDay1o8EUMbrhNR/GhVAH1hlJlGNgfseASrKDR9vuITykKI/5jWUa7kzFU6w==
+"@salesforce/core@^4.0.1", "@salesforce/core@^4.1.0", "@salesforce/core@^4.1.2", "@salesforce/core@^4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@salesforce/core/-/core-4.3.1.tgz#d4f16ce7a89e90d456a9407e5994f155b7d05134"
+  integrity sha512-mqlVWVQiy24sdHR3DvBlSlg3QDCqVj4AIhcgvcVSTu3BtKMLaR2C6himtTdKIH/Fl6wLkxPcy+LufQ8J3+HBEw==
   dependencies:
     "@salesforce/bunyan" "^2.0.0"
-    "@salesforce/kit" "^3.0.2"
+    "@salesforce/kit" "^3.0.3"
     "@salesforce/schemas" "^1.5.1"
     "@salesforce/ts-types" "^2.0.2"
     "@types/semver" "^7.5.0"
@@ -1008,7 +1008,7 @@
     typescript "^4.9.5"
     wireit "^0.9.5"
 
-"@salesforce/kit@^3.0.2":
+"@salesforce/kit@^3.0.2", "@salesforce/kit@^3.0.3":
   version "3.0.3"
   resolved "https://registry.npmjs.org/@salesforce/kit/-/kit-3.0.3.tgz"
   integrity sha512-je1x5wt2+BVcGuFvd6anodqSFQY68cDnSosAfxYCQfuQsknTNp+QorliATurpKfucOJ6yAKCxP8nxGjZzcAX0w==
@@ -1362,12 +1362,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/semver@^7.3.12":
-  version "7.3.13"
-  resolved "https://registry.npmjs.org/@types/semver/-/semver-7.3.13.tgz"
-  integrity sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==
-
-"@types/semver@^7.5.0":
+"@types/semver@^7.3.12", "@types/semver@^7.5.0":
   version "7.5.0"
   resolved "https://registry.npmjs.org/@types/semver/-/semver-7.5.0.tgz"
   integrity sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==
