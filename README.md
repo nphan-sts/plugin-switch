@@ -1,4 +1,4 @@
-## Set Up Your Dev Environment
+## 1. Set Up Your Dev Environment
 
 Before you generate a new Salesforce plugin, set up these prerequisites.
 
@@ -15,6 +15,7 @@ If your node version is earlier than 8 (or if you don’t have Node.js installed
 
 ````bash
 sudo npm install -g yarn
+````
 Install TypeScript (target es2017.)
 
 ```bash
@@ -32,13 +33,13 @@ sfdx update
 We recommend you use Visual Studio Code with Salesforce Extensions as your IDE, because it includes tools for developing on the Salesforce platform.
 ```
 
-## Install(not ready)
+## 2. Install plugin(if install successfully no need step 3,4)
 
 ```bash
-sf plugins install @salesforce/plugin-switch@x.y.z
+sf plugins:install plugin-switch-np
 ```
 
-### Build(use git)
+### 3. Build plugin(use git in case step 2 fails)
 
 To build the plugin locally, make sure to have yarn installed and run the following commands:
 
@@ -46,8 +47,9 @@ To build the plugin locally, make sure to have yarn installed and run the follow
 ```bash
 # Clone the repository
 git clone https://github.com/nphan-sts/plugin-switch.git
+```
 
-# Install the dependencies and compile
+# 4. Install the dependencies and compile
 cd plugin-switch
 yarn && yarn build
 ```
