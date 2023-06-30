@@ -61,8 +61,8 @@ sf plugins link .
 sf plugins
 ```
 
+# 5. Create SFDX project with manifest
 ```bash
-# Create SFDX project with manifest
 cd ../
 sfdx force:project:create --projectname "plugin-switch-sfdx" --manifest
 cd plugin-switch-sfdx
