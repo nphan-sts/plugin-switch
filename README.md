@@ -15,7 +15,6 @@ If your node version is earlier than 8 (or if you don’t have Node.js installed
 
 ````bash
 sudo npm install -g yarn
-````
 Install TypeScript (target es2017.)
 
 ```bash
@@ -33,42 +32,54 @@ sfdx update
 We recommend you use Visual Studio Code with Salesforce Extensions as your IDE, because it includes tools for developing on the Salesforce platform.
 ```
 
-## 2. Install plugin(if install successfully no need step 3,4)
-
-```bash
-sf plugins:install plugin-switch-np
-```
-
-### 3. Build plugin(use git in case step 2 fails)
-
+## 2. (move to step 3 first, if you cannot install plugin plugin-switch-np then back to this step) Build
 To build the plugin locally, make sure to have yarn installed and run the following commands:
-
-
 ```bash
 # Clone the repository
 git clone https://github.com/nphan-sts/plugin-switch.git
-```
 
-# 4. Install the dependencies and compile
+# Install the dependencies and compile
 cd plugin-switch
 yarn && yarn build
-```
-
-```bash
 # Link your plugin to the sf cli
 sf plugins link .
 # To verify
 sf plugins
 ```
 
-# 5. Create SFDX project with manifest
+
+## 3.Create SFDX project with manifest 
 ```bash
 cd ../
 sfdx force:project:create --projectname "plugin-switch-sfdx" --manifest
 cd plugin-switch-sfdx
 git init
+# Install plugin switch if fails back to step 2 
+sf plugins install plugin-switch-np
 ```
 Copy package.xml in LPC-830 to package.xml file
+
+```bash
+# init commit
+git add .
+git commit -m "first commit"
+```
+
+## 4. Authorizing target Org
+![image](https://github.com/nphan-sts/plugin-switch/assets/118152078/a7ed3067-7cd2-4303-9b04-fed0574dfcb1)
+
+
+
+## 5. Retrieve components, then switch off , when migration completes, switch on 
+```bash
+sf switch:retrieve --package manifest/package.xml
+sf switch switchOff --package manifest/package.xml
+#after migration 
+sf switch switchOn --package manifest/package.xml
+
+```
+
+
 
 
 
@@ -77,22 +88,51 @@ Copy package.xml in LPC-830 to package.xml file
 SFDX project is required
 
 <!-- commands -->
+* [`sf switch connect`](#sf-switch-connect)
+* [`sf switch retrieve`](#sf-switch-retrieve)
+* [`sf switch switchOff`](#sf-switch-switchoff)
+* [`sf switch switchOn`](#sf-switch-switchon)
 
-- [`sf switch retrieve'`]
+## `sf switch connect`
 
-## `sf switch retrieve'`
+Authorize an org.
+
+```
+USAGE
+  $ sf switch connect -u <value> [--json]
+
+FLAGS
+  -u, --username=<value>  (required) Authorize an org.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Authorize an org.
+
+  Have to authorize an org first.
+
+EXAMPLES
+  $ sf switch connect --username username
+```
+
+## `sf switch retrieve`
+
+Retrieve package.xml and Git repository initialized.
 
 ```
 USAGE
   $ sf switch retrieve -x <value> [--json]
 
 FLAGS
-  -x, --package=<value>  (required) Retrieve Flows, Validation Rules, Apex triggers, Process builders defined in package.xml.
+  -x, --package=<value>  (required) Retrieve Flows, Validation Rules, Apex triggers, Process builders defined in
+                         package.xml.
 
 GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
+  Retrieve package.xml and Git repository initialized.
 
   Retrieve Flows, Validation Rules, Apex triggers, Process builders defined in package.xml.
 
@@ -100,46 +140,53 @@ EXAMPLES
   '$ sf switch:retrieve --package path/to/package.xml'
 ```
 
-- [`sf switch switchOff'`]
+## `sf switch switchOff`
 
-## `sf switch switchOff'`
+Change Flows,Process builders activeVersionNumber to 0, Validation Rules active to false, Apex triggers status to Inactive.
 
+```
 USAGE
-$ sf switch switchOff -x <value> [--json]
+  $ sf switch switchOff -x <value> [--json]
 
 FLAGS
--x, --package=<value> (required) Change Flows,Process builders activeVersionNumber to 0, Validation Rules active to false, Apex triggers status to Inactive. then deploy to the org.
+  -x, --package=<value>  (required) Change Flows,Process builders activeVersionNumber to 0, Validation Rules active to
+                         false, Apex triggers status to Inactive. then deploy to the org.
 
 GLOBAL FLAGS
---json Format output as json.
+  --json  Format output as json.
 
 DESCRIPTION
+  Change Flows,Process builders activeVersionNumber to 0, Validation Rules active to false, Apex triggers status to
+  Inactive.
 
-Change Flows,Process builders activeVersionNumber to 0, Validation Rules active to false, Apex triggers status to Inactive. then deploy to the org.
+  Change Flows,Process builders activeVersionNumber to 0, Validation Rules active to false, Apex triggers status to
+  Inactive. then deploy to the org.
 
 EXAMPLES
-$ sf switch switchOff --package path/to/package.xml
+  $ sf switch switchOff --package path/to/package.xml
+```
 
-- [`sf switch switchOn'`]
-
-## `sf switch switchOn'`
+## `sf switch switchOn`
 
 Change Flows, Validation Rules, Apex triggers, Process builders to original version.
 
+```
 USAGE
-$ sf switch switchOn -x <value> [--json]
+  $ sf switch switchOn -x <value> [--json]
 
 FLAGS
--x, --package=<value> (required) Change Flows, Validation Rules, Apex triggers, Process builders to original version. then deploy to the org.
+  -x, --package=<value>  (required) Change Flows, Validation Rules, Apex triggers, Process builders to original version.
+                         then deploy to the org.
 
 GLOBAL FLAGS
---json Format output as json.
+  --json  Format output as json.
 
 DESCRIPTION
+  Change Flows, Validation Rules, Apex triggers, Process builders to original version.
 
-Change Flows, Validation Rules, Apex triggers, Process builders to original version. then deploy to the org.
+  Change Flows, Validation Rules, Apex triggers, Process builders to original version. then deploy to the org.
 
 EXAMPLES
-$ sf switch switchOn --package path/to/package.xml
-
+  $ sf switch switchOn --package path/to/package.xml
+```
 <!-- commandsstop -->
